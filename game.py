@@ -30,17 +30,15 @@ class SnakeEnv():
 
         print("GAME RESET")
 
-    def change_direction(self, action):
+    def change_direction(self, action, direction):
 
-        direction = self.direction
-
-        if action == 'UP' and self.direction != 'DOWN':
+        if action == 'UP' and direction != 'DOWN':
             direction = 'UP'
-        if action == 'DOWN' and self.direction != 'UP':
+        if action == 'DOWN' and direction != 'UP':
             direction = 'DOWN'
-        if action == 'LEFT' and self.direction != 'RIGHT':
+        if action == 'LEFT' and direction != 'RIGHT':
             direction = 'LEFT'
-        if action == 'RIGHT' and self.direction != 'LEFT':
+        if action == 'RIGHT' and direction != 'LEFT':
             direction = 'RIGHT'
         
         return direction
@@ -133,7 +131,7 @@ while True:
         snake_env.action = snake_env.human_step(event)
 
     # Check direction
-    snake_env.direction = snake_env.change_direction(snake_env.action)
+    snake_env.direction = snake_env.change_direction(snake_env.action, snake_env.direction)
     snake_env.snake_pos = snake_env.move(snake_env.direction, snake_env.snake_pos)
 
     # Check food
